@@ -241,6 +241,11 @@ mark.hl{background:none; color:inherit; text-decoration:underline; text-decorati
   .rcard{grid-template-columns:1fr}
   .rcard .seal{grid-row:auto}
 }
+.site-foot{margin-top:28px; padding-block:18px; border-top:1.5px dashed var(--line); display:grid; gap:10px; justify-items:center; text-align:center}
+.site-foot p{margin:0; font-size:14px; color:var(--muted); max-width:60ch}
+.threads-link{display:inline-flex; align-items:center; gap:8px; border:2px solid var(--ink); color:var(--ink); background:var(--card); border-radius:999px; padding:10px 20px; font-weight:700; text-decoration:none; min-height:48px}
+.threads-link:hover{background:var(--ink); color:var(--card)}
+.threads-link:focus-visible{outline:3px solid var(--green); outline-offset:2px}
 @media (prefers-reduced-motion: reduce){*{animation:none!important; transition:none!important}}
 </style>
 </head>
@@ -288,6 +293,10 @@ mark.hl{background:none; color:inherit; text-decoration:underline; text-decorati
     <div class="toolbar"><button class="icon-btn" id="soundBtn" aria-pressed="true">音效：開</button></div>
     <div id="stage"></div>
   </section>
+  <footer class="site-foot">
+    <p>老師媽咪自製的免費學習資源・課本例句摘自南一版三上課文，生活例句為原創，非出版社官方產品。</p>
+    <a class="threads-link" href="https://www.threads.com/@teacher_liujikan" target="_blank" rel="noopener">追蹤老師媽咪的 Threads　@teacher_liujikan</a>
+  </footer>
 </div>
 
 <script>
@@ -590,6 +599,7 @@ function finish(){
       <button class="${wrong.length?"ghost-btn":"big-btn"}" id="again">再玩一次</button>
       <button class="ghost-btn" id="toSetup">換範圍</button>
       <button class="ghost-btn" id="toReview">回總整理</button></div>
+    <p style="margin:0;font-size:15px;color:var(--muted)">喜歡這個遊戲嗎？<a href="https://www.threads.com/@teacher_liujikan" target="_blank" rel="noopener" style="color:var(--red);font-weight:700">追蹤老師媽咪的 Threads</a>，看更多複習小遊戲。</p>
   </div>`;
   if(wrong.length) $("#retryWrong").onclick=()=>newRound(wrong.map(r=>({q:r.Q.q,kind:r.Q.kind})));
   $("#again").onclick=()=>newRound();
