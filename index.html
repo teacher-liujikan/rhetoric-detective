@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>修辭小偵探</title>
+<meta name="description" content="三上國語第一～六課修辭複習：修辭教室、課本修辭總整理、闖關遊戲，平板和電腦都能玩。">
+<meta property="og:title" content="修辭小偵探">
+<meta property="og:description" content="三上國語第一～六課修辭複習：修辭教室、課本修辭總整理、闖關遊戲，平板和電腦都能玩。">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='10' fill='white' stroke='%23cc3329' stroke-width='6'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23cc3329' font-family='serif'%3E%E4%BF%AE%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* Layout: 一本國語作業簿（淺色）／教室黑板（深色）。單欄、平板優先，上方分頁，紅筆批改當作回饋語言。 */
+:root{
+  --paper:#f6faf5; --grid:#d5e7d8; --card:#ffffff; --ink:#1e2b33; --muted:#5a6a6c;
+  --line:#d6e2d8; --red:#cc3329; --red-soft:rgba(204,51,41,.10); --green:#2c7a57; --green-soft:rgba(44,122,87,.10);
+  --ok:#2c7a57; --gold:#c98a12; --shadow:0 1px 0 rgba(30,43,51,.06),0 6px 18px -10px rgba(30,43,51,.25);
+  --f-kai:"LXGW WenKai TC","BiauKai","DFKai-SB","Kaiti TC","STKaiti",serif;
+  --f-ui:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#1d362d; --grid:#264337; --card:#24443a; --ink:#eef3ea; --muted:#a8c0b3;
+  --line:#3a5d50; --red:#ff8a7a; --red-soft:rgba(255,138,122,.14); --green:#8fd8b0; --green-soft:rgba(143,216,176,.14);
+  --ok:#8fd8b0; --gold:#f2c35b; --shadow:0 6px 18px -10px rgba(0,0,0,.5); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#1d362d; --grid:#264337; --card:#24443a; --ink:#eef3ea; --muted:#a8c0b3;
+  --line:#3a5d50; --red:#ff8a7a; --red-soft:rgba(255,138,122,.14); --green:#8fd8b0; --green-soft:rgba(143,216,176,.14);
+  --ok:#8fd8b0; --gold:#f2c35b; --shadow:0 6px 18px -10px rgba(0,0,0,.5); color-scheme:dark }
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{min-height:100%}
+body{margin:0;
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px; background-position:-1px -1px;
+  color:var(--ink); font-family:var(--f-ui); font-size:17px; line-height:1.6;
+  padding-inline:16px; padding-block:0 48px;
+}
+.wrap{max-width:860px; margin:0 auto}
+button{font:inherit; color:inherit; cursor:pointer}
+button:focus-visible,.chip:focus-visible{outline:3px solid var(--green); outline-offset:2px}
+
+/* header */
+header.cover{padding-block:22px 10px; display:flex; flex-wrap:wrap; gap:14px 20px; align-items:flex-end; justify-content:space-between}
+.title-block{display:flex; align-items:center; gap:14px}
+.seal{display:inline-grid; place-items:center; width:54px; height:54px; border:3px solid var(--red); color:var(--red);
+  border-radius:8px; font-family:var(--f-kai); font-weight:700; font-size:30px; line-height:1; transform:rotate(-4deg); background:var(--card)}
+h1{font-family:var(--f-kai); font-size:clamp(30px,6vw,42px); margin:0; letter-spacing:.06em; line-height:1.15}
+.sub{margin:2px 0 0; color:var(--muted); font-size:15px}
+.namebox{font-family:var(--f-kai); font-size:16px; color:var(--muted); display:flex; gap:14px}
+.namebox span{border-bottom:1.5px solid var(--muted); padding:0 4px; min-width:4.2em; display:inline-block}
+
+nav.tabs{position:sticky; top:env(safe-area-inset-top,0px); z-index:5; display:flex; gap:8px; padding-block:10px;
+  background:linear-gradient(var(--paper) 80%,transparent)}
+.tab{flex:1; border:2px solid var(--line); background:var(--card); border-radius:999px; padding:10px 8px; font-weight:700; font-size:17px}
+.tab[aria-selected="true"]{border-color:var(--green); background:var(--green); color:var(--card)}
+:root[data-theme="dark"] .tab[aria-selected="true"]{color:#14271f}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tab[aria-selected="true"]{color:#14271f}}
+
+section.panel{display:grid; gap:18px; padding-top:8px}
+h2{font-family:var(--f-kai); font-size:26px; margin:0; text-wrap:balance}
+h3{font-family:var(--f-kai); font-size:23px; margin:0}
+.lead{margin:0; color:var(--muted)}
+.box{background:var(--card); border:1.5px solid var(--line); border-radius:var(--r); padding:18px; box-shadow:var(--shadow); min-width:0}
+
+/* chips */
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.chip{border:2px solid var(--line); background:var(--card); border-radius:999px; padding:7px 14px; font-weight:500; font-size:16px; min-height:44px}
+.chip[aria-pressed="true"]{border-color:var(--red); color:var(--red); background:var(--red-soft); font-weight:700}
+
+/* matrix */
+.matrix-scroll{overflow-x:auto}
+table.matrix{border-collapse:collapse; width:100%; min-width:560px; font-variant-numeric:tabular-nums}
+.matrix th,.matrix td{border:1px solid var(--line); text-align:center; padding:8px 4px; font-size:15px}
+.matrix thead th{font-family:var(--f-kai); font-size:17px}
+.matrix tbody th{font-family:var(--f-kai); white-space:nowrap; padding-inline:10px; text-align:left}
+.dot{display:inline-block; width:14px; height:14px; border-radius:50%; border:2.5px solid var(--red)}
+.matrix tr.dim{opacity:.35}
+
+/* rhetoric cards */
+.cards{display:grid; gap:14px}
+.rcard{display:grid; grid-template-columns:auto 1fr; gap:6px 16px; align-items:start}
+.rcard .seal{width:58px; height:58px; font-size:32px; grid-row:span 3}
+.rcard h3 small{font-family:var(--f-ui); font-size:14px; color:var(--muted); font-weight:500; margin-left:8px}
+.def{margin:0}
+.tip{margin:0; color:var(--green); font-weight:500}
+.tip::before{content:"判斷小撇步："; font-weight:700}
+.ex-list{grid-column:1/-1; list-style:none; margin:8px 0 0; padding:0; display:grid; gap:8px}
+.ex-list li{display:grid; grid-template-columns:auto 1fr; gap:10px; align-items:baseline; padding:10px 12px; border-radius:10px; background:var(--green-soft); min-width:0}
+.ex-list li.dim{opacity:.35}
+.ltag{font-size:13px; font-weight:700; color:var(--green); border:1.5px solid var(--green); border-radius:6px; padding:0 6px; white-space:nowrap}
+.ex-s{font-family:var(--f-kai); font-size:19px; min-width:0}
+.ex-n{display:block; font-family:var(--f-ui); font-size:14px; color:var(--muted)}
+mark.hl{background:none; color:inherit; text-decoration:underline; text-decoration-color:var(--red); text-decoration-thickness:3px; text-underline-offset:6px; font-weight:700}
+.note{grid-column:1/-1; margin:6px 0 0; font-size:15px; color:var(--muted)}
+
+.confuse{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px}
+.confuse div{border:1.5px dashed var(--line); border-radius:12px; padding:12px 14px; min-width:0}
+.confuse b{font-family:var(--f-kai); font-size:19px; display:block}
+.confuse p{margin:4px 0 0; font-size:15px}
+
+/* game setup */
+.setup{display:grid; gap:16px}
+.setup label.lbl{font-weight:700; display:block; margin-bottom:6px}
+.big-btn{border:none; background:var(--red); color:#fff; border-radius:999px; padding:14px 28px; font-size:20px; font-weight:700; min-height:56px; box-shadow:0 4px 0 rgba(0,0,0,.18)}
+.big-btn:active{transform:translateY(2px); box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.ghost-btn{border:2px solid var(--line); background:var(--card); border-radius:999px; padding:12px 22px; font-size:17px; font-weight:700; min-height:52px}
+.row{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+.best{color:var(--muted); font-size:15px}
+
+/* play */
+.hud{display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center}
+.grades{display:flex; gap:4px; flex-wrap:wrap}
+.grades i{width:30px; height:30px; border:1.5px solid var(--grid); background:var(--card); display:grid; place-items:center;
+  font-style:normal; font-family:var(--f-kai); font-weight:700; color:var(--red); font-size:20px; position:relative}
+.grades i::before,.grades i::after{content:""; position:absolute; background:var(--grid)}
+.grades i::before{left:50%; top:0; bottom:0; width:1px; opacity:.6}
+.grades i::after{top:50%; left:0; right:0; height:1px; opacity:.6}
+.grades i span{position:relative; z-index:1}
+.grades i.now{border-color:var(--red); border-width:2px}
+.combo{font-weight:700; color:var(--gold); min-height:1.6em}
+.qbox{display:grid; gap:16px}
+.qkind{font-size:15px; color:var(--muted); font-weight:700}
+.qsent{font-family:var(--f-kai); font-size:clamp(23px,4.4vw,30px); line-height:1.75; margin:0}
+.qsrc{font-size:14px; color:var(--muted)}
+.opts{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px}
+.opts.long{grid-template-columns:1fr}
+.opt{border:2.5px solid var(--line); background:var(--card); border-radius:14px; padding:14px 12px; min-height:64px;
+  font-family:var(--f-kai); font-size:24px; font-weight:700; text-align:center; transition:transform .12s, border-color .12s}
+.opts.long .opt{font-size:20px; text-align:left; font-weight:400; line-height:1.6; padding:14px 16px}
+.opt:hover{border-color:var(--green)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--ok); background:var(--green-soft)}
+.opt.wrong{border-color:var(--red); background:var(--red-soft)}
+.opt.fade{opacity:.45}
+.feedback{border-radius:12px; padding:14px 16px; display:grid; gap:4px}
+.feedback.good{background:var(--green-soft)}
+.feedback.bad{background:var(--red-soft)}
+.feedback strong{font-family:var(--f-kai); font-size:23px}
+.feedback.good strong{color:var(--ok)} .feedback.bad strong{color:var(--red)}
+.feedback p{margin:0}
+.next-row{display:flex; justify-content:flex-end}
+
+/* result */
+.score-line{display:flex; flex-wrap:wrap; align-items:center; gap:12px 22px}
+.score{font-family:var(--f-kai); font-size:64px; line-height:1; color:var(--red); font-weight:700; font-variant-numeric:tabular-nums}
+.score small{font-size:26px; color:var(--muted)}
+.stars{font-size:38px; letter-spacing:4px; color:var(--gold)}
+.stars .off{color:var(--line)}
+.stamp-card{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px}
+.stamp{display:grid; justify-items:center; gap:4px; font-size:14px; color:var(--muted)}
+.stamp .seal{width:52px; height:52px; font-size:28px; border-style:dashed; color:var(--line); border-color:var(--line); background:transparent; transform:none}
+.stamp.got .seal{border-style:solid; color:var(--red); border-color:var(--red); background:var(--card); transform:rotate(-6deg)}
+.stamp.got{color:var(--ink)}
+.stamp.new .seal{animation:press .5s ease-out}
+@keyframes press{0%{transform:scale(1.8) rotate(-6deg); opacity:0} 60%{transform:scale(.92) rotate(-6deg); opacity:1} 100%{transform:scale(1) rotate(-6deg)}}
+.wrong-list{list-style:none; margin:0; padding:0; display:grid; gap:10px}
+.wrong-list li{border-left:4px solid var(--red); padding:8px 12px; background:var(--red-soft); border-radius:0 10px 10px 0}
+.wrong-list .ex-s{display:block}
+.wrong-list p{margin:4px 0 0; font-size:15px}
+.empty{color:var(--muted); margin:0}
+.toolbar{display:flex; justify-content:flex-end; gap:8px}
+.icon-btn{border:2px solid var(--line); background:var(--card); border-radius:999px; padding:6px 14px; font-size:15px; min-height:40px}
+
+/* 修辭教室 */
+.units{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px}
+.unit{display:grid; justify-items:center; gap:6px; padding:16px 10px; border:2px solid var(--line); background:var(--card); border-radius:var(--r); min-height:140px}
+.unit:hover{border-color:var(--green)}
+.unit .seal{width:56px; height:56px; font-size:30px}
+.unit .uname{font-family:var(--f-kai); font-size:22px; font-weight:700}
+.unit .ustate{font-size:14px; color:var(--muted); font-weight:500}
+.unit.done{border-color:var(--ok); background:var(--green-soft)}
+.unit.done .ustate{color:var(--ok); font-weight:700}
+.unit-box{display:grid; gap:16px}
+.unit-head{display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center; justify-content:space-between}
+.unit-title{display:flex; align-items:center; gap:12px}
+.unit-title .seal{width:50px; height:50px; font-size:28px}
+.unit-title h2{font-size:30px}
+.ghost-btn.small{padding:6px 14px; min-height:42px; font-size:15px}
+.steps{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px}
+.steps li{display:flex; align-items:center; gap:6px; font-size:14px; color:var(--muted); padding:8px 6px; border-bottom:3px solid var(--line); min-width:0}
+.steps li span{flex:none; width:24px; height:24px; border-radius:50%; display:grid; place-items:center; border:2px solid var(--line); font-weight:700; font-size:13px}
+.steps li.past{color:var(--ok); border-color:var(--ok)} .steps li.past span{border-color:var(--ok)}
+.steps li.on{color:var(--red); border-color:var(--red); font-weight:700} .steps li.on span{border-color:var(--red); background:var(--red); color:#fff}
+.unit-body{display:grid; gap:14px; min-width:0}
+.big-intro{font-family:var(--f-kai); font-size:clamp(22px,4vw,27px); line-height:1.7; margin:0}
+.senses{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px}
+.senses div{border:1.5px solid var(--line); border-radius:12px; padding:10px 4px; text-align:center; display:grid; gap:2px}
+.senses b{font-family:var(--f-kai); font-size:20px}
+.senses span{font-size:13px; color:var(--muted)}
+.pair{display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:center; text-align:center}
+.pair .pa,.pair .pb{font-family:var(--f-kai); font-size:21px; font-weight:700; border:2px solid var(--line); border-radius:12px; padding:12px 8px}
+.pair .pb{border-color:var(--red); color:var(--red)}
+.pair .parrow{font-size:14px; color:var(--muted); font-weight:700}
+.pair .parrow::after{content:" ➜"}
+.pair p{grid-column:1/-1; margin:0; color:var(--green); font-weight:500}
+.chain{display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-family:var(--f-kai); font-size:23px}
+.chain > span:not(.carrow){border:2px solid var(--line); border-radius:12px; padding:6px 12px}
+.chain b{color:var(--red); background:var(--red-soft); border-radius:6px; padding:0 4px}
+.carrow{color:var(--muted)}
+.compare{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px}
+.cmp{border-radius:12px; padding:12px 14px; display:grid; gap:6px; align-content:start; min-width:0}
+.cmp.plain{border:1.5px dashed var(--line)}
+.cmp.plain .ex-s{color:var(--muted)}
+.cmp.rich{background:var(--green-soft); border:1.5px solid var(--green)}
+.cmp .ex-s{margin:0}
+.cmp .ltag{justify-self:start}
+.cl{font-size:13px; font-weight:700; color:var(--muted)}
+.cmp.rich .cl{color:var(--green)}
+.why{margin:0; padding:12px 14px; border-left:4px solid var(--gold); background:var(--card); border-radius:0 10px 10px 0}
+.why b{display:block; font-family:var(--f-kai); font-size:19px}
+.ltag.extra{color:var(--gold); border-color:var(--gold)}
+.ex-list li.xli{background:transparent; border:1.5px dashed var(--line)}
+.mini{display:grid; gap:10px; padding:14px; border:1.5px solid var(--line); border-radius:12px}
+.mq{margin:0; font-weight:700; font-size:18px}
+.mopts{display:grid; gap:8px}
+.mopt{text-align:left; border:2px solid var(--line); background:var(--card); border-radius:12px; padding:12px 14px; font-family:var(--f-kai); font-size:20px; min-height:52px}
+.mopt:hover{border-color:var(--green)}
+.mopt.right{border-color:var(--ok); background:var(--green-soft)}
+.mopt.wrong{border-color:var(--red); background:var(--red-soft)}
+.mopt:disabled{cursor:default}
+.mfb{margin:0; font-weight:500}
+.mfb.good{color:var(--ok)} .mfb.bad{color:var(--red)}
+.big-btn:disabled{opacity:.5; cursor:not-allowed}
+@media (max-width:520px){
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .senses{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
+@media (max-width:520px){
+  body{font-size:16px}
+  .opts{grid-template-columns:1fr 1fr}
+  .opt{font-size:21px}
+  .stamp-card{grid-template-columns:repeat(5,minmax(0,1fr)); gap:6px}
+  .stamp .seal{width:44px; height:44px; font-size:24px}
+  .rcard{grid-template-columns:1fr}
+  .rcard .seal{grid-row:auto}
+}
+@media (prefers-reduced-motion: reduce){*{animation:none!important; transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="cover">
+    <div class="title-block">
+      <div class="seal" aria-hidden="true">修</div>
+      <div>
+        <h1>修辭小偵探</h1>
+        <p class="sub">三上國語 第一課～第六課 修辭教學、總整理與闖關</p>
+      </div>
+    </div>
+    <div class="namebox" aria-hidden="true">三年<span></span>班　姓名<span></span></div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="切換頁面">
+    <button class="tab" role="tab" id="tab-learn" aria-controls="p-learn" aria-selected="true">修辭教室</button>
+    <button class="tab" role="tab" id="tab-review" aria-controls="p-review" aria-selected="false">修辭總整理</button>
+    <button class="tab" role="tab" id="tab-game" aria-controls="p-game" aria-selected="false">闖關遊戲</button>
+  </nav>
+
+  <!-- 修辭教室 -->
+  <section class="panel" id="p-learn" role="tabpanel" aria-labelledby="tab-learn">
+    <div id="learnStage"></div>
+  </section>
+
+  <!-- 總整理 -->
+  <section class="panel" id="p-review" role="tabpanel" aria-labelledby="tab-review" hidden>
+    <div class="box" style="display:grid;gap:12px">
+      <h2>哪一課有哪些修辭？</h2>
+      <p class="lead">按課別篩選，下面的卡片只會亮出那一課的例句。紅圈代表課本有標出這種修辭。</p>
+      <div class="chips" id="lessonFilter"></div>
+      <div class="matrix-scroll"><table class="matrix" id="matrix"></table></div>
+    </div>
+    <div class="cards" id="cards"></div>
+    <div class="box" style="display:grid;gap:12px">
+      <h2>容易搞混的修辭</h2>
+      <div class="confuse" id="confuse"></div>
+    </div>
+  </section>
+
+  <!-- 遊戲 -->
+  <section class="panel" id="p-game" role="tabpanel" aria-labelledby="tab-game" hidden>
+    <div class="toolbar"><button class="icon-btn" id="soundBtn" aria-pressed="true">音效：開</button></div>
+    <div id="stage"></div>
+  </section>
+</div>
+
+<script>
+/* ===== 修辭資料 ===== */
+const ORDER=["疊字","類疊","擬人","摹寫","譬喻","設問","引用","感嘆","頂真"];
+/* 譬喻、摹寫、感嘆、頂真的定義取自教師手冊課本頁的「修辭」說明 */
+const T={
+ "疊字":{seal:"疊",def:"同一個字連在一起重複使用，例如課文裡的「暖暖」「閃閃」「慢慢」。",tip:"找找看有沒有同一個字連在一起。"},
+ "類疊":{seal:"類",def:"同一個詞語或句子隔開來重複出現，用來加強語氣。",tip:"看看有沒有一樣的詞句說了又說。"},
+ "擬人":{seal:"擬",def:"把不是人的東西（動物、植物、物品、大自然）寫得像人一樣，會說話、有動作、有心情。",tip:"主角不是人，卻做了人才會做的事。"},
+ "摹寫":{seal:"摹",def:"把自己對於人、事、物的各種主觀察覺，用文字具體的描寫出來，又分為視覺、聽覺、嗅覺、味覺、觸覺。",tip:"問自己：這是用哪一個感官感覺到的？"},
+ "譬喻":{seal:"喻",def:"利用不同事物之間的類似特點，運用聯想力，將 A 事物比喻成 B 事物的修辭法。",tip:"找找看是不是把一樣東西比成另一樣東西。"},
+ "設問":{seal:"設",def:"作者故意提出問題，引起讀者注意。有時自問自答，有時只問不答，讓讀者自己想一想。",tip:"句子有問號，而且是作者故意問的。"},
+ "引用":{seal:"引",def:"借用詩句、俗語、名言或別人說過的話，來說明自己的想法。",tip:"找找看有沒有借用別人說過的句子。"},
+ "感嘆":{seal:"嘆",def:"用呼聲表露情感的修辭法，強調內心的驚訝、讚嘆等情緒。",tip:"找感嘆詞和驚嘆號「！」。"},
+ "頂真":{seal:"頂",def:"上句的末字、詞，移為下句的首字、詞，是一種上傳下接的蟬聯。",tip:"看上一句的尾巴，是不是下一句的頭。"}
+};
+const LESSONS={1:"你好，新朋友",2:"我們的約定",3:"下課十分鐘",4:"一顆黑點",5:"火大了",6:"我該怎麼辦？"};
+
+/* 課本例句（總整理用）：只收課本上有標示修辭的句子；{ } 內是畫線部分 */
+const S_SUN="{太陽伸出暖暖的手，拍拍小草說}";
+const S_LARK="{小雲雀輕快的飛過來說：「我是小雲雀，沒有多彩的羽衣，卻有清脆的歌聲。我喜歡一邊唱歌，一邊停留半空中。」}";
+const S_WIND="{風聽見樹葉慢慢落下，用長長的頭髮接住，呼呼的說}";
+const EXAMPLES=[
+ {t:"疊字",l:1,s:"太陽伸出{暖暖}的手，{拍拍}小草說"},
+ {t:"疊字",l:1,s:"大海也會{閃閃}發亮。"},
+ {t:"疊字",l:1,s:"風聽見樹葉{慢慢}落下，用{長長}的頭髮接住，{呼呼}的說"},
+ {t:"疊字",l:2,s:"教室裡有了一張{大大}的班級公約。"},
+ {t:"疊字",l:4,s:"我盯著他的筆尖，看著黑點{慢慢}變成一隻小蜜蜂。"},
+ {t:"疊字",l:4,s:"「你想過它可以變成這樣嗎？」我{搖搖}頭。"},
+ {t:"類疊",l:1,s:"{帶你去聞百合的花香，帶你去看成群的綿羊}，"},
+ {t:"類疊",l:2,s:"{「老師，有人在走廊奔跑。」「老師，有人……。」}"},
+ {t:"擬人",l:1,s:"{青山坐在湖邊畫畫}，",n:"課文賞析：將青山轉化成一位坐在湖邊的畫家。"},
+ {t:"擬人",l:1,s:S_SUN,n:"課本標示：擬人兼摹寫（觸覺、視覺）"},
+ {t:"擬人",l:1,s:S_LARK,n:"課本標示：擬人兼摹寫（聽覺）"},
+ {t:"擬人",l:1,s:S_WIND,n:"課本標示：擬人兼摹寫（聽覺）。課文賞析：將空氣流動的現象想像成風的頭髮。"},
+ {t:"擬人",l:3,s:"{有時沒踢好，球就會從腳邊溜走；有時踢準了，球就會很聽話的朝球門飛去。}",n:"課文賞析：將足球擬人化，讓描寫更加生動。"},
+ {t:"擬人",l:3,s:"只是，{下課的快樂時光總是溜得特別快。}"},
+ {t:"擬人",l:3,s:"{當上課鐘聲一響，我們就得和足球說再見。}"},
+ {t:"摹寫",l:1,s:S_SUN,n:"課本標示：擬人兼摹寫（觸覺、視覺）"},
+ {t:"摹寫",l:1,s:S_LARK,n:"課本標示：擬人兼摹寫（聽覺）"},
+ {t:"摹寫",l:1,s:S_WIND,n:"課本標示：擬人兼摹寫（聽覺）"},
+ {t:"摹寫",l:2,s:"教室裡有了{一張大大的班級公約。}",n:"課本標示：摹寫（視覺）"},
+ {t:"摹寫",l:5,s:"他們頭頂上的龍角變成「菱角」，{白牙變成黑牙，臉也烏黑一片。}",n:"課本標示：譬喻兼摹寫（視覺）。說明：具體描繪丁丁兩兄弟外表，屬視覺摹寫。"},
+ {t:"摹寫",l:6,s:"卡片：（把腳抬起來）{你看，只溼掉了一部分，很快就乾了，不過看起來灰灰的……。}",n:"課本標示：摹寫（視覺）"},
+ {t:"譬喻",l:5,s:"他們頭頂上的龍角變成{「菱角」}，白牙變成黑牙，臉也烏黑一片。",n:"課本標示：譬喻兼摹寫（視覺）。說明：運用「菱角」的外形及顏色來形容被火燻黑的龍角，為譬喻修辭中的「隱喻」。"},
+ {t:"設問",l:3,s:"{我呢？我喜歡和阿福去操場上踢足球。}"},
+ {t:"設問",l:4,s:"{回到房間後，我不停的想：我能把「小黑點」變成什麼呢？}"},
+ {t:"引用",l:2,s:"但同學們的臉上卻{幾家歡樂幾家愁}。",n:"課文賞析：引用宋代佚名〈月兒彎彎照九州〉，比喻人的際遇各不相同。"},
+ {t:"感嘆",l:6,s:"卡片：{啊！}（跳起身）我的右腳！",n:"說明：用感嘆詞凸顯卡片被水弄溼的驚訝情緒。"},
+ {t:"頂真",l:6,s:"小藍：（雙手抱胸）小紅，{我剛剛警告你，你就是不聽！}",n:"說明：上一句的「你」，接著當下一句的開頭。"}
+];
+
+const CONFUSE=[
+ ["擬人 和 譬喻","擬人是讓東西「像人一樣做事」；譬喻是把一樣東西比成另一樣東西。"],
+ ["設問 和 一般問句","對話裡想知道答案的問句不算；作者自己故意問，用來引起注意的才是設問。"]
+];
+
+/* ===== 題庫：只用課本有標示修辭的句子 =====
+   s：句子，{ } 內是畫線部分；a：答案；no：這題不放的選項（同一句課本也標了的其他修辭）；ex：解說 */
+const BANK=[
+ // 第一課
+ {l:1,s:"太陽伸出{暖暖}的手，拍拍小草說",a:"疊字",no:["摹寫"],ex:"課本標示「暖暖」是疊字。"},
+ {l:1,s:"太陽伸出暖暖的手，{拍拍}小草說",a:"疊字",ex:"課本標示「拍拍」是疊字。"},
+ {l:1,s:S_SUN,a:"擬人",no:["摹寫","疊字"],ex:"課本標示：擬人兼摹寫（觸覺、視覺）。"},
+ {l:1,s:S_SUN,a:"摹寫",no:["擬人","疊字"],ex:"課本標示：擬人兼摹寫（觸覺、視覺）。"},
+ {l:1,s:"大海也會{閃閃}發亮。",a:"疊字",ex:"課本標示「閃閃」是疊字。"},
+ {l:1,s:"{青山坐在湖邊畫畫}，",a:"擬人",no:["疊字"],ex:"課本標示：擬人。課文賞析：將青山轉化成一位坐在湖邊的畫家。"},
+ {l:1,s:S_LARK,a:"擬人",no:["摹寫","類疊"],ex:"課本標示：擬人兼摹寫（聽覺）。"},
+ {l:1,s:S_LARK,a:"摹寫",no:["擬人","類疊"],ex:"課本標示：擬人兼摹寫（聽覺）。"},
+ {l:1,s:S_WIND,a:"擬人",no:["摹寫","疊字"],ex:"課本標示：擬人兼摹寫（聽覺）。課文賞析：將空氣流動的現象想像成風的頭髮。"},
+ {l:1,s:S_WIND,a:"摹寫",no:["擬人","疊字"],ex:"課本標示：擬人兼摹寫（聽覺）。"},
+ {l:1,s:"風聽見樹葉{慢慢}落下，用{長長}的頭髮接住，{呼呼}的說",a:"疊字",no:["擬人","摹寫"],ex:"課本標示「慢慢」「長長」「呼呼」都是疊字。"},
+ {l:1,s:"{帶你去聞百合的花香，帶你去看成群的綿羊}，",a:"類疊",ex:"課本標示：類疊。"},
+ // 第二課
+ {l:2,s:"{「老師，有人在走廊奔跑。」「老師，有人……。」}",a:"類疊",ex:"課本標示：類疊。"},
+ {l:2,s:"教室裡有了一張{大大}的班級公約。",a:"疊字",no:["摹寫"],ex:"課本標示「大大」是疊字。"},
+ {l:2,s:"教室裡有了{一張大大的班級公約。}",a:"摹寫",no:["疊字"],ex:"課本標示：摹寫（視覺）。"},
+ {l:2,s:"但同學們的臉上卻{幾家歡樂幾家愁}。",a:"引用",ex:"課本標示：引用。課文賞析：引用宋代佚名〈月兒彎彎照九州〉，比喻人的際遇各不相同。"},
+ // 第三課
+ {l:3,s:"{我呢？我喜歡和阿福去操場上踢足球。}",a:"設問",ex:"課本標示：設問。"},
+ {l:3,s:"{有時沒踢好，球就會從腳邊溜走；有時踢準了，球就會很聽話的朝球門飛去。}",a:"擬人",ex:"課本標示：擬人。課文賞析：將足球擬人化，讓描寫更加生動。"},
+ {l:3,s:"只是，{下課的快樂時光總是溜得特別快。}",a:"擬人",ex:"課本標示：擬人。"},
+ {l:3,s:"{當上課鐘聲一響，我們就得和足球說再見。}",a:"擬人",ex:"課本標示：擬人。"},
+ // 第四課
+ {l:4,s:"我盯著他的筆尖，看著黑點{慢慢}變成一隻小蜜蜂。",a:"疊字",ex:"課本標示「慢慢」是疊字。"},
+ {l:4,s:"「你想過它可以變成這樣嗎？」我{搖搖}頭。",a:"疊字",ex:"課本標示「搖搖」是疊字。"},
+ {l:4,s:"{回到房間後，我不停的想：我能把「小黑點」變成什麼呢？}",a:"設問",ex:"課本標示：設問。"},
+ // 第五課
+ {l:5,s:"他們頭頂上的龍角變成{「菱角」}，白牙變成黑牙，臉也烏黑一片。",a:"譬喻",no:["摹寫"],ex:"課本標示：譬喻兼摹寫（視覺）。說明：運用「菱角」的外形及顏色來形容被火燻黑的龍角，為譬喻中的「隱喻」。"},
+ {l:5,s:"他們頭頂上的龍角變成「菱角」，{白牙變成黑牙，臉也烏黑一片。}",a:"摹寫",no:["譬喻"],ex:"課本標示：譬喻兼摹寫（視覺）。說明：具體描繪丁丁兩兄弟外表，屬視覺摹寫。"},
+ // 第六課
+ {l:6,s:"卡片：{啊！}（跳起身）我的右腳！",a:"感嘆",ex:"課本標示：感嘆。說明：用感嘆詞凸顯卡片被水弄溼的驚訝情緒。"},
+ {l:6,s:"小藍：（雙手抱胸）小紅，{我剛剛警告你，你就是不聽！}",a:"頂真",no:["疊字","感嘆"],ex:"課本標示：頂真。上一句的「你」，接著當下一句的開頭。"},
+ {l:6,s:"卡片：（把腳抬起來）{你看，只溼掉了一部分，很快就乾了，不過看起來灰灰的……。}",a:"摹寫",no:["疊字"],ex:"課本標示：摹寫（視覺）。"}
+];
+/* 同一句課本標的所有修辭（「找句子」題用來避開干擾句），再加上外觀容易讓學生誤會的 */
+const plain=s=>s.replace(/[{}]/g,"");
+const LABELS={};
+BANK.forEach(q=>{const p=plain(q.s);(LABELS[p]=LABELS[p]||new Set()).add(q.a);(q.no||[]).forEach(t=>LABELS[p].add(t))});
+BANK.forEach((q,i)=>{q.id=i;q.p=plain(q.s);
+  const pa=new Set(LABELS[q.p]);
+  if(/(.)\1/.test(q.p)) pa.add("疊字");
+  if(/！/.test(q.p)) pa.add("感嘆");
+  if(/？/.test(q.p)) pa.add("設問");
+  q.pickAll=[...pa];
+});
+/* 容易混淆，不放在同一題當選項 */
+const CONFLICT={"疊字":["類疊"],"類疊":["疊字","頂真"],"頂真":["類疊"]};
+
+/* ===== 工具 ===== */
+const $=s=>document.querySelector(s);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const mk=(s,hl=true)=>s.replace(/\{([^}]*)\}/g,(m,x)=>hl?`<mark class="hl">${x}</mark>`:x);
+const store={get(k,d){try{const v=localStorage.getItem("rhet_"+k);return v?JSON.parse(v):d}catch(e){return d}},
+             set(k,v){try{localStorage.setItem("rhet_"+k,JSON.stringify(v))}catch(e){}}};
+
+/* ===== 音效 ===== */
+let soundOn=store.get("sound",true), actx=null;
+function beep(good){
+  if(!soundOn) return;
+  try{
+    actx=actx||new (window.AudioContext||window.webkitAudioContext)();
+    const notes=good?[660,880]:[220,180];
+    notes.forEach((f,i)=>{const o=actx.createOscillator(),g=actx.createGain();o.type=good?"triangle":"square";
+      o.frequency.value=f;g.gain.setValueAtTime(.0001,actx.currentTime+i*.11);
+      g.gain.exponentialRampToValueAtTime(good?.18:.08,actx.currentTime+i*.11+.02);
+      g.gain.exponentialRampToValueAtTime(.0001,actx.currentTime+i*.11+.18);
+      o.connect(g).connect(actx.destination);o.start(actx.currentTime+i*.11);o.stop(actx.currentTime+i*.11+.2)});
+  }catch(e){}
+}
+function syncSoundBtn(){const b=$("#soundBtn");b.textContent="音效："+(soundOn?"開":"關");b.setAttribute("aria-pressed",soundOn)}
+$("#soundBtn").onclick=()=>{soundOn=!soundOn;store.set("sound",soundOn);syncSoundBtn()};
+
+/* ===== 分頁 ===== */
+let state={tab:"learn"};
+function showTab(t){
+  state.tab=t;
+  ["learn","review","game"].forEach(k=>{$("#tab-"+k).setAttribute("aria-selected",t===k);$("#p-"+k).hidden=t!==k});
+}
+$("#tab-learn").onclick=()=>showTab("learn");
+$("#tab-review").onclick=()=>showTab("review");
+$("#tab-game").onclick=()=>showTab("game");
+
+/* ===== 總整理 ===== */
+let reviewLesson=0;
+function lessonTypes(l){return ORDER.filter(t=>EXAMPLES.some(e=>e.t===t&&e.l===l))}
+function renderReview(){
+  const f=$("#lessonFilter");
+  f.innerHTML=[0,1,2,3,4,5,6].map(l=>`<button class="chip" aria-pressed="${reviewLesson===l}" data-l="${l}">${l?`第${"一二三四五六"[l-1]}課`:"全部"}</button>`).join("");
+  f.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{reviewLesson=+b.dataset.l;renderReview()});
+
+  let h=`<thead><tr><th scope="col">修辭</th>${[1,2,3,4,5,6].map(l=>`<th scope="col">第${"一二三四五六"[l-1]}課<br><small style="font-family:var(--f-ui);font-weight:400;font-size:12px">${LESSONS[l]}</small></th>`).join("")}</tr></thead><tbody>`;
+  ORDER.forEach(t=>{
+    const has=l=>EXAMPLES.some(e=>e.t===t&&e.l===l);
+    const dim=reviewLesson&&!has(reviewLesson);
+    h+=`<tr class="${dim?"dim":""}"><th scope="row">${t}</th>${[1,2,3,4,5,6].map(l=>`<td>${has(l)?'<span class="dot" aria-label="有"></span>':""}</td>`).join("")}</tr>`;
+  });
+  $("#matrix").innerHTML=h+"</tbody>";
+
+  $("#cards").innerHTML=ORDER.map(t=>{
+    const exs=EXAMPLES.filter(e=>e.t===t);
+    const has=!reviewLesson||exs.some(e=>e.l===reviewLesson);
+    if(!has) return "";
+    const info=T[t];
+    return `<article class="box rcard"><div class="seal" aria-hidden="true">${info.seal}</div>
+      <h3>${t}<small>出現在第${[...new Set(exs.map(e=>e.l))].map(l=>"一二三四五六"[l-1]).join("、")}課</small></h3>
+      <p class="def">${info.def}</p><p class="tip">${info.tip}</p>
+      <ul class="ex-list">${exs.map(e=>`<li class="${reviewLesson&&e.l!==reviewLesson?"dim":""}"><span class="ltag">第${"一二三四五六"[e.l-1]}課</span><span class="ex-s">${mk(e.s)}${e.n?`<span class="ex-n">${e.n}</span>`:""}</span></li>`).join("")}</ul>
+      ${info.note?`<p class="note">${info.note}</p>`:""}</article>`;
+  }).join("");
+}
+$("#confuse").innerHTML=CONFUSE.map(c=>`<div><b>${c[0]}</b><p>${c[1]}</p></div>`).join("");
+
+/* ===== 遊戲 ===== */
+let cfg={lessons:[1,2,3,4,5,6],n:10};
+let round=null;
+const LN=l=>"一二三四五六"[l-1];
+
+function poolFor(c){
+  return BANK.filter(q=>c.lessons.includes(q.l));
+}
+function makeQ(q,kind){
+  if(kind==="pick"){ // 哪一句用了 X
+    const X=q.a, bad=[X,...(CONFLICT[X]||[])];
+    const seen=new Set([q.p]),others=[];
+    for(const o of shuffle(BANK)){if(others.length===3)break;if(seen.has(o.p)||o.pickAll.some(t=>bad.includes(t)))continue;seen.add(o.p);others.push(o)}
+    if(others.length<3) return makeQ(q,"name");
+    const opts=shuffle([q,...others]).map(o=>({label:mk(o.s,false),val:o.id}));
+    return {kind,q,target:X,opts,answer:q.id};
+  }
+  const ban=new Set([q.a,...(CONFLICT[q.a]||[]),...(q.no||[])]);
+  const ds=shuffle(ORDER.filter(t=>!ban.has(t))).slice(0,3);
+  return {kind:"name",q,opts:shuffle([q.a,...ds]).map(t=>({label:t,val:t})),answer:q.a};
+}
+function newRound(fromList){
+  let qs;
+  if(fromList){qs=shuffle(fromList).map(x=>makeQ(x.q,x.kind))}
+  else{
+    const pool=shuffle(poolFor(cfg));
+    // 盡量讓修辭種類平均出現
+    const byType={};pool.forEach(q=>(byType[q.a]=byType[q.a]||[]).push(q));
+    const picked=[];let types=shuffle(Object.keys(byType));
+    while(picked.length<Math.min(cfg.n,pool.length)){
+      for(const t of types){if(byType[t].length&&picked.length<cfg.n)picked.push(byType[t].shift())}
+      types=types.filter(t=>byType[t].length);if(!types.length)break;
+    }
+    qs=shuffle(picked).map((q,i)=>makeQ(q,Math.random()<.3?"pick":"name"));
+  }
+  round={qs,i:0,score:0,combo:0,best:0,results:[],got:new Set(),answered:false};
+  renderPlay();
+}
+
+function renderSetup(){
+  const best=store.get("best",null), stamps=new Set(store.get("stamps",[]));
+  const n=poolFor(cfg).length;
+  $("#stage").innerHTML=`<div class="box setup">
+    <div><h2>選好範圍，開始闖關！</h2><p class="lead">題目都是第一課到第六課課本標出修辭的句子。看畫線的部分，選出用了哪一種修辭；有些題目會反過來問：「哪一句用了某種修辭？」</p></div>
+    <div><label class="lbl" id="lbl-l">要複習哪幾課？</label>
+      <div class="chips" role="group" aria-labelledby="lbl-l" id="setL">${[1,2,3,4,5,6].map(l=>`<button class="chip" id="sl${l}" aria-pressed="${cfg.lessons.includes(l)}" data-l="${l}">第${LN(l)}課</button>`).join("")}
+      <button class="chip" id="slall" data-all="1" aria-pressed="false">全選</button></div></div>
+    <div class="row"><button class="big-btn" id="startBtn" ${n?"":"disabled"}>開始闖關（${Math.min(cfg.n,n)} 題）</button>
+      <span class="best">${best!==null?`最高紀錄：${best} 分`:"還沒有紀錄，來挑戰吧！"}</span></div>
+    <div><label class="lbl">我的修辭印章（全部答對過就會蓋上）</label>${stampCard(stamps,new Set())}</div>
+  </div>`;
+  $("#setL").querySelectorAll(".chip").forEach(b=>b.onclick=()=>{
+    if(b.dataset.all){cfg.lessons=[1,2,3,4,5,6]}
+    else{const l=+b.dataset.l;cfg.lessons=cfg.lessons.includes(l)?cfg.lessons.filter(x=>x!==l):[...cfg.lessons,l].sort();if(!cfg.lessons.length)cfg.lessons=[l]}
+    renderSetup()});
+  $("#startBtn").onclick=()=>newRound();
+}
+function stampCard(got,fresh){
+  return `<div class="stamp-card">${ORDER.map(t=>`<div class="stamp ${got.has(t)?"got":""} ${fresh.has(t)?"new":""}"><div class="seal" aria-hidden="true">${T[t].seal}</div>${t}</div>`).join("")}</div>`;
+}
+function gradesRow(){
+  return `<div class="grades" aria-label="答題紀錄">${round.qs.map((_,k)=>{
+    const r=round.results[k];const mark=r===undefined?"":r.ok?"○":"✗";
+    return `<i class="${k===round.i&&!round.done?"now":""}"><span>${mark}</span></i>`}).join("")}</div>`;
+}
+function renderPlay(){
+  const Q=round.qs[round.i], q=Q.q;
+  const src=`第${LN(q.l)}課〈${LESSONS[q.l]}〉`;
+  let head;
+  if(Q.kind==="pick"){
+    head=`<div class="qkind">第 ${round.i+1} 題・找句子</div><p class="qsent">下面哪一句用了「${Q.target}」？</p>`;
+  }else{
+    head=`<div class="qkind">第 ${round.i+1} 題・畫線的部分用了哪一種修辭？</div><p class="qsent">${mk(q.s)}</p><div class="qsrc">${src}</div>`;
+  }
+  $("#stage").innerHTML=`<div class="box qbox">
+    <div class="hud">${gradesRow()}<div class="combo" id="combo">${round.combo>=2?`連續答對 ${round.combo} 題！`:""}</div></div>
+    ${head}
+    <div class="opts ${Q.kind==="pick"?"long":""}" id="opts">${Q.opts.map((o,k)=>`<button class="opt" id="opt${k}" data-k="${k}">${o.label}</button>`).join("")}</div>
+    <div id="fb"></div>
+  </div>`;
+  $("#opts").querySelectorAll(".opt").forEach(b=>b.onclick=()=>answer(+b.dataset.k));
+  const first=$("#opt0"); if(first) first.focus({preventScroll:true});
+}
+function answer(k){
+  if(round.answered) return; round.answered=true;
+  const Q=round.qs[round.i], pick=Q.opts[k], ok=pick.val===Q.answer;
+  round.results[round.i]={ok,Q,pickLabel:pick.label};
+  if(ok){round.score++;round.combo++;round.best=Math.max(round.best,round.combo);round.got.add(Q.q.a)}else round.combo=0;
+  beep(ok);
+  $("#opts").querySelectorAll(".opt").forEach((b,j)=>{b.disabled=true;
+    if(Q.opts[j].val===Q.answer)b.classList.add("right");else if(j===k)b.classList.add("wrong");else b.classList.add("fade")});
+  const q=Q.q;
+  const ansText=Q.kind==="pick"?`<p class="ex-s">${mk(q.s)}</p>`:"";
+  $("#fb").innerHTML=`<div class="feedback ${ok?"good":"bad"}" role="status">
+      <strong>${ok?["答對了！","好厲害！","偵探眼力一流！","完全正確！"][Math.floor(Math.random()*4)]:`再想想，答案是「${q.a}」`}</strong>
+      ${ansText}<p>${q.ex}</p></div>
+    <div class="next-row"><button class="big-btn" id="nextBtn">${round.i+1<round.qs.length?"下一題":"看成績"}</button></div>`;
+  $("#combo").textContent=round.combo>=2?`連續答對 ${round.combo} 題！`:"";
+  document.querySelectorAll(".grades i")[round.i].querySelector("span").textContent=ok?"○":"✗";
+  $("#nextBtn").onclick=next; $("#nextBtn").focus({preventScroll:true});
+}
+function next(){
+  round.answered=false; round.i++;
+  if(round.i<round.qs.length){renderPlay();window.scrollTo({top:0,behavior:"smooth"})}
+  else finish();
+}
+function finish(){
+  round.done=true;
+  const total=round.qs.length, pct=round.score/total, score=Math.round(pct*100);
+  const stars=pct>=.9?3:pct>=.7?2:pct>=.4?1:0;
+  const best=store.get("best",null); if(best===null||score>best) store.set("best",score);
+  const prev=new Set(store.get("stamps",[])); const fresh=new Set([...round.got].filter(t=>!prev.has(t)));
+  const all=new Set([...prev,...round.got]); store.set("stamps",[...all]);
+  const wrong=round.results.filter(r=>!r.ok);
+  const msg=stars===3?"太棒了，你是修辭神探！":stars===2?"很不錯！再複習一下錯的題目就更完美了。":stars===1?"有進步的空間，先看看總整理再挑戰一次吧！":"別灰心，先到「修辭總整理」複習，再回來挑戰！";
+  $("#stage").innerHTML=`<div class="box" style="display:grid;gap:18px">
+    <div class="score-line"><div class="score">${score}<small> 分</small></div>
+      <div><div class="stars" aria-label="${stars} 顆星">${[0,1,2].map(i=>i<stars?"★":'<span class="off">★</span>').join("")}</div>
+      <div>答對 ${round.score} / ${total} 題・最多連續答對 ${round.best} 題</div></div></div>
+    <p style="margin:0;font-family:var(--f-kai);font-size:22px">${msg}</p>
+    ${gradesRow()}
+    <div><h3 style="margin-bottom:8px">這次蓋到的印章</h3>${stampCard(all,fresh)}</div>
+    <div><h3 style="margin-bottom:8px">錯題本</h3>${wrong.length?`<ul class="wrong-list">${wrong.map(r=>`<li><span class="ex-s">${mk(r.Q.q.s,r.Q.kind!=="pick")}</span>
+      <p>${r.Q.kind==="pick"?`題目問「哪一句用了${r.Q.target}」，正確的是這一句。`:`你選「${r.pickLabel}」，正確答案是「<b>${r.Q.q.a}</b>」。`}${r.Q.q.ex}</p></li>`).join("")}</ul>`:'<p class="empty">全部答對，沒有錯題！</p>'}</div>
+    <div class="row">${wrong.length?'<button class="big-btn" id="retryWrong">只練錯的題目</button>':""}
+      <button class="${wrong.length?"ghost-btn":"big-btn"}" id="again">再玩一次</button>
+      <button class="ghost-btn" id="toSetup">換範圍</button>
+      <button class="ghost-btn" id="toReview">回總整理</button></div>
+  </div>`;
+  if(wrong.length) $("#retryWrong").onclick=()=>newRound(wrong.map(r=>({q:r.Q.q,kind:r.Q.kind})));
+  $("#again").onclick=()=>newRound();
+  $("#toSetup").onclick=()=>{round=null;renderSetup()};
+  $("#toReview").onclick=()=>{showTab("review");window.scrollTo({top:0})};
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ===== 修辭教室 =====
+   plain：沒有用修辭的改寫（只用來對照）；rich：課本原句
+   extra：課外例句；quiz：小試身手 */
+const LEARN={
+ "疊字":{
+  intro:"把同一個字連在一起用兩次，就是疊字。",
+  plain:"太陽伸出溫暖的手",rich:"太陽伸出{暖暖}的手",richL:1,
+  why:"疊字讓句子讀起來有節奏，聽起來更柔和、更生動。",
+  extra:["小貓{輕輕}的走過屋頂。","弟弟{高高興興}的去上學。"],
+  quiz:[
+   {q:"下面哪一句有疊字？",opts:["小貓輕輕的走過屋頂。","小貓走過屋頂。","我很喜歡小貓。"],a:0,ex:"「輕輕」是同一個字連在一起，是疊字。"},
+   {q:"「大海也會閃閃發亮。」哪兩個字是疊字？",opts:["閃閃","大海","發亮"],a:0,ex:"「閃閃」是同一個字連在一起。"}
+  ]},
+ "類疊":{
+  intro:"同樣的詞語或句子，隔開來一說再說，就是類疊。",
+  plain:"帶你去聞百合的花香，看成群的綿羊",rich:"{帶你去}聞百合的花香，{帶你去}看成群的綿羊",richL:1,
+  why:"重複說同樣的話，可以加強語氣，讓人印象更深。",
+  extra:["「{快一點}！{快一點}！公車要開走了！」","{下雨了}，{下雨了}，大家快把衣服收進來。"],
+  quiz:[
+   {q:"下面哪一句用了類疊？",opts:["下雨了，下雨了，大家快把衣服收進來。","下雨了，大家快把衣服收進來。","今天的雨下得很大。"],a:0,ex:"「下雨了」說了兩次，是類疊。"},
+   {q:"「老師，有人在走廊奔跑。」「老師，有人……。」重複出現的是哪幾個字？",opts:["老師，有人","走廊奔跑","在走廊"],a:0,ex:"「老師，有人」一說再說，可以感覺到告狀的同學很多。"}
+  ]},
+ "擬人":{
+  intro:"把不是人的東西，寫得像人一樣會說話、有動作、有心情，就是擬人。",
+  plain:"青山倒映在湖水中",rich:"{青山坐在湖邊畫畫}",richL:1,
+  why:"青山不會坐、也不會畫畫。寫成像人一樣，讀起來更親切、更有趣。",
+  extra:["{月亮躲進雲裡睡覺了}。","向日葵{抬起頭，對著太陽微笑}。"],
+  quiz:[
+   {q:"下面哪一句用了擬人？",opts:["月亮躲進雲裡睡覺了。","今晚的月亮又大又圓。","我和爸爸一起看月亮。"],a:0,ex:"月亮不會躲、不會睡覺，把月亮寫得像人，是擬人。"},
+   {q:"「球就會很聽話的朝球門飛去。」哪個詞讓足球像人一樣？",opts:["很聽話","球門","朝"],a:0,ex:"只有人才會「聽話」，所以足球被寫得像人一樣。"}
+  ]},
+ "摹寫":{
+  intro:"把眼睛看到、耳朵聽到、鼻子聞到、舌頭嘗到、身體摸到的感覺，仔細寫出來，就是摹寫。",
+  senses:[["視覺","眼睛看"],["聽覺","耳朵聽"],["嗅覺","鼻子聞"],["味覺","舌頭嘗"],["觸覺","身體摸"]],
+  plain:"小雲雀會唱歌",rich:"卻有{清脆的歌聲}",richL:1,
+  why:"把感覺寫清楚，讀的人就像自己也看到、聽到、摸到一樣。",
+  extra:["檸檬汁{又酸又冰}，喝一口眼睛都瞇起來了。（味覺、觸覺）","走進花園，{桂花的香味撲鼻而來}。（嗅覺）"],
+  quiz:[
+   {q:"「走進花園，桂花的香味撲鼻而來。」這是用哪一種感覺寫的？",opts:["嗅覺（鼻子聞）","聽覺（耳朵聽）","味覺（舌頭嘗）"],a:0,ex:"香味是用鼻子聞到的，是嗅覺摹寫。"},
+   {q:"第五課「白牙變成黑牙，臉也烏黑一片。」是用哪一種感覺寫的？",opts:["視覺（眼睛看）","觸覺（身體摸）","聽覺（耳朵聽）"],a:0,ex:"牙齒和臉的顏色是眼睛看到的，課本標示為視覺摹寫。"}
+  ]},
+ "譬喻":{
+  intro:"兩樣東西有相像的地方，就把 A 比成 B，這就是譬喻。",
+  pair:{a:"被火燻黑的龍角",b:"菱角",same:"外形和顏色"},
+  plain:"他們頭頂上的龍角被燻黑了",rich:"他們頭頂上的龍角變成{「菱角」}",richL:5,
+  why:"用大家看過的東西來比，讀的人馬上就能想像出樣子。常見的提示詞有「像」「好像」「彷彿」。",
+  extra:["弟弟跑得{像一陣風一樣}快。","冬天的早晨，草地上的霜{就像撒了一層白糖}。"],
+  quiz:[
+   {q:"「弟弟跑得像一陣風一樣快。」把弟弟比成什麼？",opts:["一陣風","跑步","冬天"],a:0,ex:"弟弟跑得快，風也很快，所以用「風」來比喻弟弟。"},
+   {q:"下面哪一句用了譬喻？",opts:["天上的星星好像一顆顆小鑽石。","天上的星星很亮。","我晚上在院子裡數星星。"],a:0,ex:"把星星比成鑽石，提示詞是「好像」。"}
+  ]},
+ "設問":{
+  intro:"作者故意問一個問題，讓讀者注意，就是設問。有時候自己問、自己答；有時候只問不答，讓讀者自己想。",
+  plain:"我喜歡和阿福去操場上踢足球。",rich:"{我呢？}我喜歡和阿福去操場上踢足球。",richL:3,
+  why:"先問一個問題，讀的人會好奇答案是什麼，就會更專心往下讀。",
+  extra:["{你知道我最喜歡哪個季節嗎？}就是可以玩水的夏天！","{誰是我們班最熱心的人？}當然是小美啦！"],
+  quiz:[
+   {q:"下面哪一句用了設問？",opts:["誰是我們班最熱心的人？當然是小美啦！","小美是我們班最熱心的人。","小美每天都很早到學校。"],a:0,ex:"先故意問，再自己回答，是設問。"},
+   {q:"第四課「我能把『小黑點』變成什麼呢？」是哪一種設問？",opts:["只問不答，讓讀者自己想","自問自答"],a:0,ex:"課文沒有直接說出答案，讓讀者跟著主角一起想。"}
+  ]},
+ "引用":{
+  intro:"借用詩句、俗語、名言或別人說過的話，來說自己想說的事，就是引用。",
+  plain:"同學們有的開心，有的不開心。",rich:"同學們的臉上卻{幾家歡樂幾家愁}。",richL:2,
+  why:"借用大家熟悉的句子，話可以說得更簡單、更有力。「幾家歡樂幾家愁」借自宋代的民歌〈月兒彎彎照九州〉。",
+  extra:["{俗話說：「一分耕耘，一分收穫。」}只要每天練習，一定會進步。","{俗話說：「早睡早起身體好。」}所以我每天九點就上床睡覺。"],
+  quiz:[
+   {q:"下面哪一句用了引用？",opts:["俗話說：「早睡早起身體好。」所以我每天早睡。","我每天都很早睡覺。","早上的空氣很新鮮。"],a:0,ex:"借用了大家都知道的俗語，是引用。"},
+   {q:"第二課「幾家歡樂幾家愁」是什麼意思？",opts:["有人開心，也有人發愁","大家都很開心","大家都很難過"],a:0,ex:"訂了班級公約，有的同學開心，有的同學覺得受到約束。"}
+  ]},
+ "感嘆":{
+  intro:"用「啊、哇、唉、哎呀」這些呼聲，表達驚訝、讚嘆、難過等心情，就是感嘆。常常會用到驚嘆號「！」。",
+  plain:"我的右腳溼了。",rich:"{啊！}我的右腳！",richL:6,
+  why:"一聲「啊！」就能讓人感覺到卡片被水潑到時有多驚訝。",
+  extra:["{哇！}這座沙堡好漂亮啊！（讚嘆）","{唉！}我又忘記帶作業了。（懊惱）"],
+  quiz:[
+   {q:"下面哪一句用了感嘆？",opts:["哎呀！牛奶打翻了！","牛奶打翻了。","我每天早上都喝牛奶。"],a:0,ex:"用「哎呀！」表達驚訝，是感嘆。"},
+   {q:"「唉！我又忘記帶作業了。」表達的是什麼心情？",opts:["懊惱","開心","驚喜"],a:0,ex:"「唉」常用來表達懊惱、難過。"}
+  ]},
+ "頂真":{
+  intro:"上一句最後的字詞，拿來當下一句的開頭，一句接一句，像文字接龍，就是頂真。",
+  chain:[["我剛剛警告","你"],["你","就是不聽！"]],
+  plain:"我剛剛警告過你了，你卻不聽！",rich:"我剛剛警告{你，你}就是不聽！",richL:6,
+  why:"句子一句扣著一句，讀起來很順，語氣也更強。",
+  extra:["我家門前有一條{小河，小河}裡有好多小魚。","從前有座{山，山}裡有座{廟，廟}裡有個老和尚。"],
+  quiz:[
+   {q:"下面哪一句用了頂真？",opts:["我送給小美一張卡片，卡片上畫著一隻小熊。","我送給小美一張畫著小熊的卡片。","小美最喜歡小熊了。"],a:0,ex:"上一句最後的「卡片」，接著當下一句的開頭。"},
+   {q:"「我家門前有一條小河，小河裡有好多小魚。」接龍的是哪個詞？",opts:["小河","小魚","門前"],a:0,ex:"「小河」是上一句的結尾，也是下一句的開頭。"}
+  ]}
+};
+const STEPS=["認識","課本裡的句子","生活中的例子","小試身手"];
+let learnT=null, learnStep=0, quizState={}, quizOrder=[];
+function doneSet(){return new Set(store.get("learned",[]))}
+function renderLearnHome(){
+  const done=doneSet();
+  $("#learnStage").innerHTML=`<div class="box" style="display:grid;gap:14px">
+    <div><h2>選一種修辭開始學</h2><p class="lead">每種修辭有四個步驟：${STEPS.join("、")}。學完會打勾，九種都學完再去闖關！</p></div>
+    <div class="units">${ORDER.map(t=>`<button class="unit ${done.has(t)?"done":""}" data-t="${t}" id="u-${T[t].seal}">
+      <span class="seal" aria-hidden="true">${T[t].seal}</span><span class="uname">${t}</span>
+      <span class="ustate">${done.has(t)?"✓ 學會了":"開始學"}</span></button>`).join("")}</div>
+    <p class="lead" style="font-size:15px">已學會 ${done.size} / ${ORDER.length} 種</p>
+  </div>`;
+  $("#learnStage").querySelectorAll(".unit").forEach(b=>b.onclick=()=>openUnit(b.dataset.t));
+}
+function openUnit(t){learnT=t;learnStep=0;quizState={};quizOrder=LEARN[t].quiz.map(z=>shuffle(z.opts.map((_,i)=>i)));renderUnit();window.scrollTo({top:0,behavior:"smooth"})}
+function tag(kind,l){return kind==="book"?`<span class="ltag">第${"一二三四五六"[l-1]}課</span>`:`<span class="ltag extra">課外例句</span>`}
+function renderUnit(){
+  const t=learnT, L=LEARN[t], info=T[t];
+  let body="";
+  if(learnStep===0){
+    body=`<p class="big-intro">${L.intro}</p>
+      ${L.senses?`<div class="senses">${L.senses.map(s=>`<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join("")}</div>`:""}
+      ${L.pair?`<div class="pair"><div class="pa">${L.pair.a}</div><div class="parrow" aria-hidden="true">比成</div><div class="pb">${L.pair.b}</div><p>相像的地方：${L.pair.same}</p></div>`:""}
+      ${L.chain?`<div class="chain">${L.chain.map((c,i)=>i===0?`<span>${c[0]}<b>${c[1]}</b></span>`:`<span class="carrow" aria-hidden="true">→</span><span><b>${c[0]}</b>${c[1]}</span>`).join("")}</div>`:""}
+      <div class="compare">
+        <div class="cmp plain"><span class="cl">沒有用修辭（改寫）</span><p class="ex-s">${L.plain}</p></div>
+        <div class="cmp rich"><span class="cl">課本原句・用了${t}</span><p class="ex-s">${mk(L.rich)}</p><span class="ltag">第${"一二三四五六"[L.richL-1]}課</span></div>
+      </div>
+      <p class="why"><b>為什麼要這樣寫？</b>${L.why}</p>`;
+  }else if(learnStep===1){
+    const exs=EXAMPLES.filter(e=>e.t===t);
+    body=`<p class="lead">課本裡標出「${t}」的句子，畫線的地方就是修辭。讀一讀，找找看。</p>
+      <ul class="ex-list">${exs.map(e=>`<li>${tag("book",e.l)}<span class="ex-s">${mk(e.s)}${e.n?`<span class="ex-n">${e.n}</span>`:""}</span></li>`).join("")}</ul>`;
+  }else if(learnStep===2){
+    body=`<p class="lead">生活中說話、寫作文，也可以用「${t}」。下面是課外例句：</p>
+      <ul class="ex-list">${L.extra.map(s=>`<li class="xli">${tag("extra")}<span class="ex-s">${mk(s)}</span></li>`).join("")}</ul>`;
+  }else{
+    body=`<p class="lead">答對兩題，就學會「${t}」了！</p>${L.quiz.map((z,qi)=>{
+      const st=quizState[qi];
+      return `<div class="mini"><p class="mq">${qi+1}. ${z.q}</p><div class="mopts">${quizOrder[qi].map(oi=>{const o=z.opts[oi];
+        let cls="";if(st!==undefined){if(oi===z.a&&st.ok)cls="right";else if(oi===st.pick&&!st.ok)cls="wrong"}
+        return `<button class="mopt ${cls}" data-q="${qi}" data-o="${oi}" ${st&&st.ok?"disabled":""}>${o}</button>`}).join("")}</div>
+        ${st!==undefined?`<p class="mfb ${st.ok?"good":"bad"}">${st.ok?"答對了！"+z.ex:"再想想看，換一個答案試試。"}</p>`:""}</div>`}).join("")}`;
+  }
+  const allOk=L.quiz.every((z,qi)=>quizState[qi]&&quizState[qi].ok);
+  const last=learnStep===STEPS.length-1;
+  $("#learnStage").innerHTML=`<div class="box unit-box">
+    <div class="unit-head"><button class="ghost-btn small" id="backUnits">← 全部修辭</button>
+      <div class="unit-title"><span class="seal" aria-hidden="true">${info.seal}</span><h2>${t}</h2></div></div>
+    <ol class="steps">${STEPS.map((s,i)=>`<li class="${i===learnStep?"on":""} ${i<learnStep?"past":""}"><span>${i+1}</span>${s}</li>`).join("")}</ol>
+    <div class="unit-body">${body}</div>
+    <div class="row" style="justify-content:space-between">
+      <button class="ghost-btn" id="prevStep" ${learnStep===0?"hidden":""}>上一步</button>
+      ${last?`<button class="big-btn" id="finishUnit" ${allOk?"":"disabled"}>${allOk?"我學會了！":"答對兩題才能完成"}</button>`
+            :`<button class="big-btn" id="nextStep">下一步：${STEPS[learnStep+1]}</button>`}
+    </div></div>`;
+  $("#backUnits").onclick=()=>{learnT=null;renderLearnHome()};
+  if($("#prevStep")) $("#prevStep").onclick=()=>{learnStep--;renderUnit()};
+  if($("#nextStep")) $("#nextStep").onclick=()=>{learnStep++;renderUnit();window.scrollTo({top:0,behavior:"smooth"})};
+  if($("#finishUnit")) $("#finishUnit").onclick=finishUnit;
+  $("#learnStage").querySelectorAll(".mopt").forEach(b=>b.onclick=()=>{
+    const qi=+b.dataset.q, oi=+b.dataset.o, ok=oi===L.quiz[qi].a;
+    quizState[qi]={ok,pick:oi}; beep(ok); renderUnit();
+  });
+}
+function finishUnit(){
+  const done=doneSet();done.add(learnT);store.set("learned",[...done]);
+  const nextT=ORDER.find(t=>!done.has(t));
+  $("#learnStage").innerHTML=`<div class="box" style="display:grid;gap:16px;justify-items:start">
+    <div class="stamp got new"><div class="seal" aria-hidden="true">${T[learnT].seal}</div></div>
+    <h2>你學會「${learnT}」了！</h2>
+    <p class="lead">已學會 ${done.size} / ${ORDER.length} 種修辭。</p>
+    <div class="row">${nextT?`<button class="big-btn" id="goNext">下一種：${nextT}</button>`:`<button class="big-btn" id="goGame">九種都學會了，去闖關！</button>`}
+      <button class="ghost-btn" id="goHome">回到全部修辭</button></div></div>`;
+  if(nextT) $("#goNext").onclick=()=>openUnit(nextT); else $("#goGame").onclick=()=>{showTab("game");window.scrollTo({top:0})};
+  $("#goHome").onclick=()=>{learnT=null;renderLearnHome()};
+}
+
+/* ===== 啟動 ===== */
+function start(data){
+  syncSoundBtn(); renderLearnHome(); renderReview(); renderSetup();
+  if(data&&data.tab) showTab(data.tab);
+  if(location.hash==="#game") showTab("game");
+}
+const hot=window.claude&&window.claude.hot;
+if(hot&&hot.snapshot){try{hot.snapshot(()=>({tab:state.tab}))}catch(e){}}
+if(hot&&hot.ready) hot.ready(start); else start((hot&&hot.data)||{});
+</script>
+</body>
+</html>
