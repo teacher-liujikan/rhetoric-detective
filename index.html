@@ -46,7 +46,21 @@ button{font:inherit; color:inherit; cursor:pointer}
 button:focus-visible,.chip:focus-visible{outline:3px solid var(--green); outline-offset:2px}
 
 /* header */
-header.cover{padding-block:22px 10px; display:flex; flex-wrap:wrap; gap:14px 20px; align-items:flex-end; justify-content:space-between}
+header.cover{padding-block:22px 10px; display:flex; gap:14px 20px; align-items:flex-start; justify-content:space-between}
+.title-block{min-width:0}
+.head-right{display:flex; gap:16px; align-items:flex-end; flex:none}
+.qr{margin:0; display:grid; justify-items:center; gap:4px; background:#fff; border:2px solid var(--red); border-radius:12px; padding:8px 8px 6px}
+.qr #qrImg svg{display:block; width:96px; height:96px}
+.qr figcaption{font-size:12px; font-weight:700; color:#cc3329; white-space:nowrap}
+@media (max-width:640px){
+  header.cover{gap:10px}
+  .title-block{gap:10px}
+  .title-block .seal{width:44px; height:44px; font-size:24px}
+  .qr #qrImg svg{width:72px; height:72px}
+  .namebox{gap:8px; font-size:15px}
+  .namebox span{min-width:3em}
+}
+.namebox{white-space:nowrap}
 .title-block{display:flex; align-items:center; gap:14px}
 .seal{display:inline-grid; place-items:center; width:54px; height:54px; border:3px solid var(--red); color:var(--red);
   border-radius:8px; font-family:var(--f-kai); font-weight:700; font-size:30px; line-height:1; transform:rotate(-4deg); background:var(--card)}
@@ -168,7 +182,12 @@ mark.hl{background:none; color:inherit; text-decoration:underline; text-decorati
 .icon-btn{border:2px solid var(--line); background:var(--card); border-radius:999px; padding:6px 14px; font-size:15px; min-height:40px}
 
 /* 修辭教室 */
-.units{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px}
+.units{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px}
+@media (max-width:640px){.units{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.prows{display:grid; gap:8px}
+.prows div{display:grid; grid-template-columns:minmax(0,1.3fr) auto minmax(0,1.6fr); gap:10px; align-items:center; font-family:var(--f-kai); font-size:22px}
+.prows span{border:2px solid var(--line); border-radius:10px; padding:6px 12px; background:var(--card)}
+.prows b{color:var(--red); background:var(--red-soft); border-radius:8px; padding:4px 10px}
 .unit{display:grid; justify-items:center; gap:6px; padding:16px 10px; border:2px solid var(--line); background:var(--card); border-radius:var(--r); min-height:140px}
 .unit:hover{border-color:var(--green)}
 .unit .seal{width:56px; height:56px; font-size:30px}
@@ -259,7 +278,12 @@ mark.hl{background:none; color:inherit; text-decoration:underline; text-decorati
         <p class="sub">三上國語 第一課～第六課 修辭教學、總整理與闖關</p>
       </div>
     </div>
-    <div class="namebox" aria-hidden="true">三年<span></span>班　姓名<span></span></div>
+    <div class="head-right">
+      <figure class="qr" id="qrBox" hidden>
+        <div id="qrImg" role="img" aria-label="這個網頁的 QR Code"></div>
+        <figcaption>掃我開啟網頁</figcaption>
+      </figure>
+    </div>
   </header>
 
   <nav class="tabs" role="tablist" aria-label="切換頁面">
@@ -299,9 +323,10 @@ mark.hl{background:none; color:inherit; text-decoration:underline; text-decorati
   </footer>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <script>
 /* ===== 修辭資料 ===== */
-const ORDER=["疊字","類疊","擬人","摹寫","譬喻","設問","引用","感嘆","頂真"];
+const ORDER=["疊字","類疊","擬人","摹寫","譬喻","設問","引用","排比","感嘆","頂真"];
 /* 譬喻、摹寫、感嘆、頂真的定義取自教師手冊課本頁的「修辭」說明 */
 const T={
  "疊字":{seal:"疊",def:"同一個字連在一起重複使用，例如課文裡的「暖暖」「閃閃」「慢慢」。",tip:"找找看有沒有同一個字連在一起。"},
@@ -311,6 +336,7 @@ const T={
  "譬喻":{seal:"喻",def:"利用不同事物之間的類似特點，運用聯想力，將 A 事物比喻成 B 事物的修辭法。",tip:"找找看是不是把一樣東西比成另一樣東西。"},
  "設問":{seal:"設",def:"作者故意提出問題，引起讀者注意。有時自問自答，有時只問不答，讓讀者自己想一想。",tip:"句子有問號，而且是作者故意問的。"},
  "引用":{seal:"引",def:"借用詩句、俗語、名言或別人說過的話，來說明自己的想法。",tip:"找找看有沒有借用別人說過的句子。"},
+ "排比":{seal:"排",def:"三個或三個以上句型相似、語氣一致的句子，一句接一句排在一起。",tip:"數數看：有沒有三句長得很像的句子排在一起？"},
  "感嘆":{seal:"嘆",def:"用呼聲表露情感的修辭法，強調內心的驚訝、讚嘆等情緒。",tip:"找感嘆詞和驚嘆號「！」。"},
  "頂真":{seal:"頂",def:"上句的末字、詞，移為下句的首字、詞，是一種上傳下接的蟬聯。",tip:"看上一句的尾巴，是不是下一句的頭。"}
 };
@@ -346,6 +372,7 @@ const EXAMPLES=[
  {t:"設問",l:3,s:"{我呢？我喜歡和阿福去操場上踢足球。}"},
  {t:"設問",l:4,s:"{回到房間後，我不停的想：我能把「小黑點」變成什麼呢？}"},
  {t:"引用",l:2,s:"但同學們的臉上卻{幾家歡樂幾家愁}。",n:"課文賞析：引用宋代佚名〈月兒彎彎照九州〉，比喻人的際遇各不相同。"},
+ {t:"排比",l:6,s:"△布幕升起時，{小紅在書桌上奔跑，小黃、小藍在聊天，卡片在睡覺。}",n:"課本標示：排比。三句都是「誰＋在＋做什麼」。"},
  {t:"感嘆",l:6,s:"卡片：{啊！}（跳起身）我的右腳！",n:"說明：用感嘆詞凸顯卡片被水弄溼的驚訝情緒。"},
  {t:"頂真",l:6,s:"小藍：（雙手抱胸）小紅，{我剛剛警告你，你就是不聽！}",n:"說明：上一句的「你」，接著當下一句的開頭。"}
 ];
@@ -389,6 +416,7 @@ const BANK=[
  {l:5,s:"他們頭頂上的龍角變成{「菱角」}，白牙變成黑牙，臉也烏黑一片。",a:"譬喻",no:["摹寫"],ex:"課本標示：譬喻兼摹寫（視覺）。說明：運用「菱角」的外形及顏色來形容被火燻黑的龍角，為譬喻中的「隱喻」。"},
  {l:5,s:"他們頭頂上的龍角變成「菱角」，{白牙變成黑牙，臉也烏黑一片。}",a:"摹寫",no:["譬喻"],ex:"課本標示：譬喻兼摹寫（視覺）。說明：具體描繪丁丁兩兄弟外表，屬視覺摹寫。"},
  // 第六課
+ {l:6,s:"△布幕升起時，{小紅在書桌上奔跑，小黃、小藍在聊天，卡片在睡覺。}",a:"排比",no:["擬人","類疊"],ex:"課本標示：排比。三句都是「誰＋在＋做什麼」，一句接一句排在一起。"},
  {l:6,s:"卡片：{啊！}（跳起身）我的右腳！",a:"感嘆",ex:"課本標示：感嘆。說明：用感嘆詞凸顯卡片被水弄溼的驚訝情緒。"},
  {l:6,s:"小藍：（雙手抱胸）小紅，{我剛剛警告你，你就是不聽！}",a:"頂真",no:["疊字","感嘆"],ex:"課本標示：頂真。上一句的「你」，接著當下一句的開頭。"},
  {l:6,s:"卡片：（把腳抬起來）{你看，只溼掉了一部分，很快就乾了，不過看起來灰灰的……。}",a:"摹寫",no:["疊字"],ex:"課本標示：摹寫（視覺）。"}
@@ -405,7 +433,7 @@ BANK.forEach((q,i)=>{q.id=i;q.p=plain(q.s);
   q.pickAll=[...pa];
 });
 /* 容易混淆，不放在同一題當選項 */
-const CONFLICT={"疊字":["類疊"],"類疊":["疊字","頂真"],"頂真":["類疊"]};
+const CONFLICT={"疊字":["類疊"],"類疊":["疊字","頂真","排比"],"頂真":["類疊"],"排比":["類疊"]};
 
 /* ===== 工具 ===== */
 const $=s=>document.querySelector(s);
@@ -677,6 +705,16 @@ const LEARN={
    {q:"下面哪一句用了引用？",opts:["俗話說：「早睡早起身體好。」所以我每天早睡。","我每天都很早睡覺。","早上的空氣很新鮮。"],a:0,ex:"借用了大家都知道的俗語，是引用。"},
    {q:"第二課「幾家歡樂幾家愁」是什麼意思？",opts:["有人開心，也有人發愁","大家都很開心","大家都很難過"],a:0,ex:"訂了班級公約，有的同學開心，有的同學覺得受到約束。"}
   ]},
+ "排比":{
+  intro:"把三個或三個以上句型差不多的句子，一句接一句排在一起，就是排比。",
+  rows:[["小紅","在","書桌上奔跑"],["小黃、小藍","在","聊天"],["卡片","在","睡覺"]],
+  plain:"布幕升起時，文具們在桌上做自己的事。",rich:"{小紅在書桌上奔跑，小黃、小藍在聊天，卡片在睡覺。}",richL:6,
+  why:"句子排得整整齊齊，讀起來很有節奏，一下子就看出每個角色在做什麼。",
+  extra:["{有的同學在跳繩，有的同學在打球，有的同學在盪鞦韆}。","{我喜歡畫畫，我喜歡唱歌，我更喜歡和朋友一起跳舞}。"],
+  quiz:[
+   {q:"下面哪一句用了排比？",opts:["有的同學在跳繩，有的同學在打球，有的同學在盪鞦韆。","同學們下課都在操場上玩。","下課了，我去跳繩。"],a:0,ex:"三句「有的同學在……」句型一樣，排在一起，是排比。"},
+   {q:"第六課「小紅在書桌上奔跑，小黃、小藍在聊天，卡片在睡覺。」有幾個句型相似的句子？",opts:["三個","兩個","一個"],a:0,ex:"三句都是「誰＋在＋做什麼」。"}
+  ]},
  "感嘆":{
   intro:"用「啊、哇、唉、哎呀」這些呼聲，表達驚訝、讚嘆、難過等心情，就是感嘆。常常會用到驚嘆號「！」。",
   plain:"我的右腳溼了。",rich:"{啊！}我的右腳！",richL:6,
@@ -703,7 +741,7 @@ function doneSet(){return new Set(store.get("learned",[]))}
 function renderLearnHome(){
   const done=doneSet();
   $("#learnStage").innerHTML=`<div class="box" style="display:grid;gap:14px">
-    <div><h2>選一種修辭開始學</h2><p class="lead">每種修辭有四個步驟：${STEPS.join("、")}。學完會打勾，九種都學完再去闖關！</p></div>
+    <div><h2>選一種修辭開始學</h2><p class="lead">每種修辭有四個步驟：${STEPS.join("、")}。學完會打勾，十種都學完再去闖關！</p></div>
     <div class="units">${ORDER.map(t=>`<button class="unit ${done.has(t)?"done":""}" data-t="${t}" id="u-${T[t].seal}">
       <span class="seal" aria-hidden="true">${T[t].seal}</span><span class="uname">${t}</span>
       <span class="ustate">${done.has(t)?"✓ 學會了":"開始學"}</span></button>`).join("")}</div>
@@ -720,6 +758,7 @@ function renderUnit(){
     body=`<p class="big-intro">${L.intro}</p>
       ${L.senses?`<div class="senses">${L.senses.map(s=>`<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join("")}</div>`:""}
       ${L.pair?`<div class="pair"><div class="pa">${L.pair.a}</div><div class="parrow" aria-hidden="true">比成</div><div class="pb">${L.pair.b}</div><p>相像的地方：${L.pair.same}</p></div>`:""}
+      ${L.rows?`<div class="prows">${L.rows.map(r=>`<div><span>${r[0]}</span><b>${r[1]}</b><span>${r[2]}</span></div>`).join("")}</div>`:""}
       ${L.chain?`<div class="chain">${L.chain.map((c,i)=>i===0?`<span>${c[0]}<b>${c[1]}</b></span>`:`<span class="carrow" aria-hidden="true">→</span><span><b>${c[0]}</b>${c[1]}</span>`).join("")}</div>`:""}
       <div class="compare">
         <div class="cmp plain"><span class="cl">沒有用修辭（改寫）</span><p class="ex-s">${L.plain}</p></div>
@@ -769,15 +808,27 @@ function finishUnit(){
     <div class="stamp got new"><div class="seal" aria-hidden="true">${T[learnT].seal}</div></div>
     <h2>你學會「${learnT}」了！</h2>
     <p class="lead">已學會 ${done.size} / ${ORDER.length} 種修辭。</p>
-    <div class="row">${nextT?`<button class="big-btn" id="goNext">下一種：${nextT}</button>`:`<button class="big-btn" id="goGame">九種都學會了，去闖關！</button>`}
+    <div class="row">${nextT?`<button class="big-btn" id="goNext">下一種：${nextT}</button>`:`<button class="big-btn" id="goGame">十種都學會了，去闖關！</button>`}
       <button class="ghost-btn" id="goHome">回到全部修辭</button></div></div>`;
   if(nextT) $("#goNext").onclick=()=>openUnit(nextT); else $("#goGame").onclick=()=>{showTab("game");window.scrollTo({top:0})};
   $("#goHome").onclick=()=>{learnT=null;renderLearnHome()};
 }
 
+/* ===== 右上角 QR Code：自動抓這個網頁的網址 =====
+   想固定成某個網址，就把 PAGE_URL 填進去，例如 "https://帳號.github.io/rhetoric-detective/" */
+const PAGE_URL="";
+function renderQR(){
+  try{
+    const url=PAGE_URL||(/^https?:/.test(location.href)?location.href.split("#")[0]:"");
+    if(!url||typeof qrcode==="undefined") return;
+    const q=qrcode(0,"M"); q.addData(url); q.make();
+    $("#qrImg").innerHTML=q.createSvgTag({cellSize:4,margin:2,scalable:true});
+    $("#qrBox").hidden=false;
+  }catch(e){}
+}
 /* ===== 啟動 ===== */
 function start(data){
-  syncSoundBtn(); renderLearnHome(); renderReview(); renderSetup();
+  syncSoundBtn(); renderQR(); renderLearnHome(); renderReview(); renderSetup();
   if(data&&data.tab) showTab(data.tab);
   if(location.hash==="#game") showTab("game");
 }
